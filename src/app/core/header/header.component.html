@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-black">
+  <div class="container flex-center gap-4 w-3/4 m-auto">
+    <a class="navbar-brand text-white whitespace-nowrap" [routerLink]="['/']">Brand Logo</a>
+
+    <div class="flex-center gap-4 w-full " id="navbarSupportedContent">
+      <ul class="navbar-nav flex-center gap-4">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <div class="form-inline my-2 my-lg-0 flex-center gap-4">
+        <input class="outline-none h-10 rounded-full w-full px-4" (ngModelChange)="searchMovie(keyWord)" ngModel="" type="search" #keyWord placeholder="Search" aria-label="Search">
+        <button class="slb-btn slb-btn-white rounded-full" (click)="searchMovie(keyWord)" type="submit">Search</button>
+        <ul class="dropdown-list" *ngIf="showDropDown">
+          <li class="dropdown-list-item" *ngFor="let item of searchData.Search">
+            <a class="nav-link cnav-link" [routerLink]="['/detail/', item.Title]" [queryParams]="{'id': item.imdbID}" (click)="dropDownClose(keyWord)">
+              <figure class="poster">
+                <img src="{{item.Poster}}" alt="">
+              </figure>
+              <h2 class="title">{{item.Title}}</h2>
+              <p class="sub-title">{{item.Year}}</p>
+              <p class="sub-title">{{item.Type}}</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

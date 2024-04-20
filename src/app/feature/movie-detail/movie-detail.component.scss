@@ -1,0 +1,17 @@
+.detail{
+  margin: 30px auto;
+}
+.strip{
+  background: rgb(77 80 82 / 83%);
+  padding: 10px 0;
+  margin-bottom: 10px;
+  p{
+    margin: 0;
+  }
+}
+.flex {
+  display: flex;
+}
+.justify{
+  justify-content: space-around;
+}
