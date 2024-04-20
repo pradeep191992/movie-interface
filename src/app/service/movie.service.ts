@@ -1,4 +1,4 @@
-import { MovieInterfaceModel } from './../modals/movie-interface.modal';
+import { MainResponse, MovieDetails } from './../modals/movie-interface.modal';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,17 +20,25 @@ export class MovieService {
     private http: HttpClient
   ) { }
 
-  getMovieDetails(id: any): Observable<MovieInterfaceModel> {
-    return this.http.get<MovieInterfaceModel>(this.url + 'i=' + id + '&plot=full' + '&apikey=' + this.apiKey);
+  getMovieDetails(id: any): Observable<MovieDetails> {
+    return this.http.get<MovieDetails>(this.url + 'i=' + id + '&plot=full' + '&apikey=' + this.apiKey);
   }
 
-  getListOfMovieDetails(): Observable<MovieInterfaceModel> {
-    return this.http.get<MovieInterfaceModel>(this.url + 's=batman&page=2&apikey=' + this.apiKey);
+  getListOfMovieDetails(): Observable<MainResponse> {
+    return this.http.get<MainResponse>(this.url + 's=movie&page=1&apikey=' + this.apiKey);
   }
 
-  searchListOfMovie(keyWord: any): Observable<MovieInterfaceModel> {
-    return this.http.get<MovieInterfaceModel>(this.url + 's=' + keyWord + '&apikey=' + this.apiKey);
+  searchListOfMovie(keyWord: any): Observable<MainResponse> {
+    return this.http.get<MainResponse>(this.url + 's=' + keyWord + '&apikey=' + this.apiKey);
   }
+
+  getListOfMoviePaginatedList(page: number, searchQuery: string): Observable<MainResponse> {
+    const apiUrl = `${this.url}s=${searchQuery}&page=${page}&apikey=${this.apiKey}`;
+    return this.http.get<MainResponse>(apiUrl);
+  }
+
+
+
 
   // getSinglegetMovieDetails(id: any): Observable<MovieInterfaceModel> {
   //   return this.http.get<MovieInterfaceModel>(this.url+'[yourkey]&').pipe( map(

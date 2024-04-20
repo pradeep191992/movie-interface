@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ResultList } from 'src/app/modals/movie-interface.modal';
 
 @Component({
   selector: 'app-movie-card',
@@ -7,13 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MovieCardComponent implements OnInit {
 
-  @Input() searchData: any;
+  @Input() searchData!: ResultList;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  goToDetail(event: any){
+  goToDetail(event: any) {
     console.log(event);
   }
 
